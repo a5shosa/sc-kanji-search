@@ -5,8 +5,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SC Kanji Search",
-  description: "漢字検索アプリケーション",
+  title: "このかんじ、いつならう？",
+  description:
+    "文章に含まれる漢字を、小学校〜中学校のどの学年で習うか分割して表示します。",
 };
 
 export default function RootLayout({

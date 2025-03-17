@@ -109,6 +109,48 @@ export function getJuniorHighGrade(
  */
 export function getKanjiInfo(kanji: string) {
   const level = getKanjiLevel(kanji);
+  // 漢字の読み仮名マップ（一部の漢字のみ）
+  const kanjiReadings: Record<string, string> = {
+    // 小学1年生
+    一: "いち",
+    二: "に",
+    三: "さん",
+    四: "よん・し",
+    五: "ご",
+    六: "ろく",
+    七: "なな・しち",
+    八: "はち",
+    九: "きゅう・く",
+    十: "じゅう",
+    百: "ひゃく",
+    千: "せん",
+    万: "まん",
+    円: "えん",
+    玉: "たま",
+    王: "おう",
+    // 小学2年生
+    父: "ちち",
+    母: "はは",
+    // 小学3年生
+    悪: "わる・あく",
+    // 小学4年生
+    愛: "あい",
+    // 小学5年生
+    圧: "あつ",
+    // 小学6年生
+    異: "こと・い",
+    // 中学1年生
+    哀: "あわ・あい",
+    // 中学2年生
+    挨: "あい",
+    // 中学3年生
+    曖: "あい",
+    // 中学3年生相当
+    握: "あく・にぎ",
+  };
+
+  // 読み仮名を取得（なければ空文字列）
+  const reading = kanjiReadings[kanji] || "";
 
   if (level === "elementary") {
     const grade = getElementaryGrade(kanji);
@@ -117,6 +159,7 @@ export function getKanjiInfo(kanji: string) {
       level,
       grade,
       description: `小学${grade}年生で習う漢字です。`,
+      reading,
     };
   } else if (level === "junior_high") {
     const grade = getJuniorHighGrade(kanji);
@@ -126,6 +169,7 @@ export function getKanjiInfo(kanji: string) {
         level,
         grade: "3_equivalent",
         description: "中学3年生相当の漢字です。",
+        reading,
       };
     } else if (grade !== null) {
       return {
@@ -133,6 +177,7 @@ export function getKanjiInfo(kanji: string) {
         level,
         grade,
         description: `中学${grade}年生で習う漢字です。`,
+        reading,
       };
     }
   }
@@ -142,6 +187,7 @@ export function getKanjiInfo(kanji: string) {
     level,
     grade: null,
     description: "小・中学校の教育漢字ではありません。",
+    reading,
   };
 }
 
@@ -156,9 +202,9 @@ export function getGradeColor(
   grade: number | "3_equivalent" | null
 ): string {
   if (level === "elementary" && typeof grade === "number") {
-    return "text-black-900"; // 小学生は黒
+    return "text-blue-500"; // 小学生は濃い青
   } else if (level === "junior_high") {
-    return "text-black-900"; // 中学生も黒
+    return "text-green-600"; // 中学生は濃い緑
   }
   return "text-gray-700";
 }
