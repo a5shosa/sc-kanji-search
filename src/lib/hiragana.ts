@@ -36,7 +36,7 @@ export function convertToHiragana(text: string): string {
     小: "しょう",
     中: "ちゅう",
     高: "こう",
-    習: "ならう",
+    習: "なら",
     相: "そう",
     当: "とう",
     等: "とう",

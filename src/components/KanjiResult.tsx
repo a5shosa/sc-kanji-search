@@ -1,14 +1,16 @@
+import React from "react";
 import { getGradeColor } from "@/lib/kanji";
 import { convertToHiragana } from "@/lib/hiragana";
 
-type KanjiResultProps = {
+export type KanjiResultProps = {
   kanji: string;
   level: "elementary" | "junior_high" | "unknown";
   grade: number | "3_equivalent" | null;
   description: string;
-  reading?: string;
-  easyMode?: boolean;
+  easyMode: boolean;
   largeText?: boolean;
+  showUnicode?: boolean;
+  showDictLink?: boolean;
 };
 
 export default function KanjiResult({
@@ -16,50 +18,57 @@ export default function KanjiResult({
   level,
   grade,
   description,
-  reading = "",
-  easyMode = false,
+  easyMode,
   largeText = false,
+  showUnicode = false,
+  showDictLink = false,
 }: KanjiResultProps) {
   // 文字色を直接指定
   const textColorClass =
     level === "elementary"
-      ? "text-indigo-900"
+      ? "text-slate-700"
       : level === "junior_high"
-      ? "text-green-800"
-      : "text-gray-700";
+      ? "text-slate-700"
+      : "text-slate-700";
 
-  // ボーダー色を文字色と同じにする
-  const borderColorClass =
-    level === "elementary"
-      ? "border-indigo-900"
-      : level === "junior_high"
-      ? "border-green-800"
-      : "border-gray-700";
+  // Unicodeコードポイントを取得
+  const unicodePoint = kanji.codePointAt(0)?.toString(16).toUpperCase();
 
-  // かんたんモードの場合は説明文を平仮名に変換
-  const displayDescription = easyMode
-    ? convertToHiragana(description)
-    : description;
+  // 漢字辞典URLの生成
+  const dictionaryUrl = `https://kanji.jitenon.jp/cat/search?getdata=-${encodeURIComponent(
+    kanji
+  )}-&search=contain&how=%E3%81%99%E3%81%B9%E3%81%A6`;
 
   return (
-    <div
-      className={`p-2 rounded-lg border-2 ${borderColorClass} bg-white flex flex-col`}
-    >
-      <div className="flex justify-between items-center mb-1">
+    <div className="border rounded-md p-3 bg-white shadow-sm">
+      <div className="flex items-start">
         <div
           className={`${
-            largeText ? "text-5xl" : "text-3xl"
-          } font-bold ${textColorClass} mr-2`}
+            largeText ? "text-7xl" : "text-5xl"
+          } font-serif font-black ${textColorClass}`}
         >
           {kanji}
         </div>
-        <div className="text-sm text-gray-700 flex-1">{displayDescription}</div>
-      </div>
-      {reading && (
-        <div className="text-[10px] text-gray-400 self-end">
-          よみがな：{reading}
+        <div className="ml-3 text-base text-gray-600 pt-1">
+          {easyMode ? convertToHiragana(description) : description}
         </div>
-      )}
+      </div>
+      <div className="mt-2">
+        <div className="flex justify-end items-center gap-2 text-[10px] text-gray-400">
+          {showUnicode && unicodePoint && <span>U+{unicodePoint}</span>}
+          {showDictLink && (
+            <a
+              href={dictionaryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg hover:text-green-600 transition-colors"
+              title="漢字辞典で詳細を見る"
+            >
+              📗
+            </a>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
