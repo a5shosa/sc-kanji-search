@@ -59,7 +59,7 @@ export default function Home() {
           <textarea
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="flex-1 p-2 border rounded-l resize-none"
+            className="flex-1 p-2 border rounded-l resize-none bg-white text-black"
             placeholder={placeholder}
             rows={3}
           />
@@ -190,7 +190,8 @@ export default function Home() {
             className="underline"
           >
             こちら
-          </a>のサイトで公開されているデータを利用させて頂いております。
+          </a>
+          のサイトで公開されているデータを利用させて頂いております。
         </p>
       </footer>
     </main>
