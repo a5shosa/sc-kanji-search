@@ -774,7 +774,7 @@ export function getKanjiInfo(kanji: string) {
         kanji,
         level,
         grade: "3_equivalent",
-        description: "中学3年生相当の漢字です。",
+        description: "中学校卒業相当の漢字です。",
         reading,
       };
     } else if (grade !== null) {
@@ -782,7 +782,7 @@ export function getKanjiInfo(kanji: string) {
         kanji,
         level,
         grade,
-        description: `中学${grade}年生で習う漢字です。`,
+        description: `中学生が習う漢字です。`,
         reading,
       };
     }

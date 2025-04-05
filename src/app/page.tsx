@@ -169,6 +169,7 @@ export default function Home() {
       ) : null}
 
       <footer className="w-full max-w-3xl mt-8 text-xs text-gray-400">
+        <p className="mb-1">免責事項</p>
         <p className="mb-1">
           ・小学校で習う漢字は、文部科学省の「学習指導要領『生きる力』」に掲載されている「
           <a
@@ -182,16 +183,29 @@ export default function Home() {
           」を元に設定しています。
         </p>
         <p>
-          ・中学校で習う漢字について、学年配当はありません。当サイトでは便宜的に
+          ・中学校で習う漢字は「
           <a
-            href="http://kanji365.blog.fc2.com/blog-entry-2392.html"
+            href="https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kakuki/14/pdf/jyouyou_kanjihyou.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
           >
-            こちら
+            常用漢字表
           </a>
-          のサイトで公開されているデータを利用させて頂いております。
+          」に掲載されている 2,136 字から、小学校で学習する漢字を網羅した「
+          <a
+            href="https://www.mext.go.jp/a_menu/shotou/new-cs/youryou/syo/koku/001.htm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            別表 学年別漢字配当表
+          </a>
+          」記載の 1,006 字を省いた 1,130
+          字となりますが、学年配当の定めはありません。 中学校一学年あたりでは
+          300〜400
+          字の学習目標があります。当サイトでは漢字の難易度や使用頻度など独自の判断により、中学校で習う漢字については「中学生が習う漢字です。」「中学校卒業相当の漢字です。」と分けて表示しています。
+          これらの判断によって生じた損害・被害等には対応致しかねますので、予めご了承下さい。
         </p>
       </footer>
     </main>
